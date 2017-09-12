@@ -14,13 +14,14 @@ const ProjectsView = Backbone.View.extend({
     },
     projectsSync: function() {
         this.projects.each(function(prj) {
-            const project = new ProjectsItem({
-                model: prj
-            });
-            this.$el.append(project.render().el)
+            if(prj.attributes.name.includes('.md')){
+                const project = new ProjectsItem({
+                    model: prj
+                });
+                this.$el.append(project.render().el)
+            }
         }.bind(this));
     }
-
 });
 
 module.exports = ProjectsView;

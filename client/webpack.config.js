@@ -47,6 +47,13 @@ module.exports = {
             pathRewrite: {
                 '^/store': '/api'
             }
+        },
+        '/userSettings': {
+            target: 'http://localhost:3000',
+            secure: false,
+            pathRewrite: {
+                '^/userSettings': '/user/settings'
+            }
         }
     }
   }

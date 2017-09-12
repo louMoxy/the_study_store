@@ -26,11 +26,12 @@ const Prj = Backbone.Model.extend({
 
 const Project = Backbone.Collection.extend({
     model: Prj, 
-    url: '/api/v1/tree/moxy/master',
+    url: null,
     parse: function(response) {
         return JSON.parse(response).data;
     },
     fetch:function(options){
+        this.url = `/api/v1/tree/moxy/${options.projectName}`
         options = options || {};
         options.dataType = 'html';
         return Backbone.Collection.prototype.fetch.call(this, options);

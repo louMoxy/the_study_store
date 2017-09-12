@@ -2,7 +2,7 @@ const Backbone = require('backbone');
 const ProjectsItem = require('./projects-item');
 
 const ProjectsView = Backbone.View.extend({
-    tagName: 'li',
+    tagName: 'ul',
     className: 'projectsList',
     initialize: function(options) {
         this.projects = options.projects;
