@@ -1,13 +1,16 @@
 # the_study_store
 
-To start: 
+To start gitea:
+(in cmd - not gitbash)
+cd gitea
+gitea-1.2-windows-4.0-amd64.exe web
+
+To start backbone:
 cd client
-npm install 
+npm install
 npm start
 
-Log in is done in code in app ajaxSetup
-Select repo from a list of repos #/projects
-Select file from repo list /#/projects/{repoName}
-Get contents from file /#/file/{repoName}/{fileName}
-Create new project /#/create/repo
-Change Password /#/settings/password-update
+gitea template files which have been modifies are:
+repo/bare --- when there is no files in the repo)
+repo/home --- repo list
+user/settings/password --- password change response
