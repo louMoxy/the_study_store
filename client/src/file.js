@@ -3,13 +3,16 @@ const $ = require('jquery');
 
 const File = Backbone.Model.extend({
     url: null,
+    initialize: function(options) {
+        this.user = options.user;
+    },
     fetch: function(options){
         options = options || {};
         this.dir = options.dir;
         this.fileName = options.fileName;
         this.branch = 'master';
         options.dataType = 'text';
-        this.url = `/api/v1/repos/moxy/${this.dir}/raw/${this.branch}/${this.fileName}`;
+        this.url = `/api/v1/repos/${this.user}/${this.dir}/raw/${this.branch}/${this.fileName}`;
         return Backbone.Model.prototype.fetch.call(this, options);
     },
     parse: function(response) {

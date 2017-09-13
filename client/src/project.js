@@ -11,7 +11,7 @@ const Prj = Backbone.Model.extend({
         name: null
     },
     parse: function(response){
-        const dir = response.TreeLink.split('/moxy/').pop().split('/')[0];
+        const dir = response.TreeLink.split(`/${response.user}/`).pop().split('/')[0];
         return {
             link: `#/file/${dir}/${response.name}`,
             TreeLink: response.TreeLink,
@@ -27,11 +27,15 @@ const Prj = Backbone.Model.extend({
 const Project = Backbone.Collection.extend({
     model: Prj, 
     url: null,
+    user: null,
     parse: function(response) {
-        return JSON.parse(response).data;
+        const data = JSON.parse(response).data;
+        data[0].user = this.user;
+        return data;
     },
     fetch:function(options){
-        this.url = `/api/v1/tree/moxy/${options.projectName}`
+        this.user = options.user;
+        this.url = `/api/v1/tree/${this.user}/${options.projectName}`
         options = options || {};
         options.dataType = 'html';
         return Backbone.Collection.prototype.fetch.call(this, options);

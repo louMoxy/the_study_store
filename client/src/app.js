@@ -15,21 +15,25 @@ const ChangePasswordView = require('./change-password-view');
 const App = Backbone.Model.extend({
     router: null,
     init: function() {
-        const auth = btoa('Moxy:tester');
+        this.user = 'moxy';
+        this.csrf = 'NlVPwUpnoEyt6CPOR29yWiNaytI6MTUwNTI5MDgwNzcyODAwMDAwMA==';
+        const auth = btoa(`${this.user}:tester`);
         $.ajaxSetup({
             headers: {
                 'Authorization': `Basic ${auth}`,
-                "_csrf": 'ipEPj7EkSJ4TR2UowMM7GhGIBik6MTUwNTEzOTkzODcyMzkyMzkwMA=='
+                "_csrf": this.csrf
             }
         });
-        this.createRepoView = new CreateRepoView();
-        this.changePasswordView = new ChangePasswordView();
+        this.createRepoView = new CreateRepoView({
+            csrf: this.csrf
+        });
+        this.changePasswordView = new ChangePasswordView({
+            csrf: this.csrf
+        });
         this.projects = new Projects();
-        this.file = new File();
+        this.file = new File({user: this.user});
         this.project = new Project();
         this.singleProject = new Project();
-        // this.project.fetch();
-        // this.singleProject.fetch();
         this.appView = new AppView({ el: document.querySelector('section.mainContent') });
         this.projectsView = new ProjectsView({
             projects: this.projects
@@ -54,7 +58,7 @@ const App = Backbone.Model.extend({
         this.appView.render();
     },
     routeProject: function (projectName) {
-        this.singleProject.fetch({projectName: projectName});
+        this.singleProject.fetch({projectName: projectName, user: this.user});
         this.appView.childView = this.singleProjectsView;
         this.appView.render();
     },

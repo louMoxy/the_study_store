@@ -4,6 +4,10 @@ Backbone.emulateJSON = true;
 
 const CreatePassView = Backbone.View.extend({
     template: require('./change-password.ejs'),
+    csrf: null,
+    initialize: function(options) {
+        this.csrf = options.csrf;
+    },
     events: {
         'submit' : "formSubmitted"
     },
@@ -16,11 +20,10 @@ const CreatePassView = Backbone.View.extend({
         const old_password = $('#old_password').val();
         const password = $('#password').val();
         const retype = $('#retype').val();
-        const csrf= '52HzwiHa1UdFj8aIBv3XK1g1GZ86MTUwNTIzMTU0NzA2NzM3NTAwMA%3D%3D';
         const request = new Request('/userSettings/password', {
             method: 'POST', 
             mode: 'cors',
-            body: `_csrf=${csrf}&old_password=${old_password}&password=${password}&retype=${retype}`,
+            body: `_csrf=${this.csrf}&old_password=${old_password}&password=${password}&retype=${retype}`,
             redirect: 'manual',
             credentials: 'same-origin',
             headers: new Headers({
