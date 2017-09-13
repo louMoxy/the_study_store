@@ -8,7 +8,6 @@ const Projects = require('./projects');
 const Project = require('./project');
 const File = require('./file');
 const SingleFileView = require('./single-file-view');
-const LoginView = require('./login');
 const CreateRepoView = require('./create-repo-view');
 const ChangePasswordView = require('./change-password-view');
 
@@ -42,9 +41,6 @@ const App = Backbone.Model.extend({
             projects: this.singleProject
         });
         this.singleFileView = new SingleFileView({
-            model: this.file
-        });
-        this.loginView = new LoginView({
             model: this.file
         });
         this.router = new Router({ app: this });
