@@ -1,0 +1,5 @@
+{{if .IsViewFile}}
+{{template "repo/view_file" .}}
+{{else}}
+{{template "repo/view_list" .}}
+{{end}}
