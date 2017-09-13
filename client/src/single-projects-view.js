@@ -6,7 +6,8 @@ const ProjectsView = Backbone.View.extend({
     className: 'projectsList',
     initialize: function(options) {
         this.projects = options.projects;
-        this.listenTo(this.projects, 'sync', this.projectsSync)
+        this.repos = options.repos;
+        this.listenTo(this.projects, 'sync', this.projectsSync);
     },
     render: function() {
         this.$el.html('');
@@ -15,7 +16,7 @@ const ProjectsView = Backbone.View.extend({
     projectsSync: function() {
         if(this.projects.length !== 0) {
             this.projects.each(function(prj) {
-                if(prj.attributes.name.includes('.md')){
+                if(prj.attributes.name.includes('.txt')){
                     const project = new ProjectsItem({
                         model: prj
                     });
@@ -23,7 +24,9 @@ const ProjectsView = Backbone.View.extend({
                 }
             }.bind(this));
         } else {
-            this.$el.append('<h3>This repo is empty</h3>')
+            const repo = this.repos.findWhere({name: this.projects.projectName});
+            this.$el.append(`<h3>${repo.attributes.name} repo is empty</h3><br>
+                <p>Repo clone: ${repo.attributes.clone_url}</p>`)
         }
     }
 });

@@ -30,6 +30,9 @@ const App = Backbone.Model.extend({
             csrf: this.csrf
         });
         this.projects = new Projects();
+        this.projects.fetch({
+            dataType: 'json',
+        })
         this.file = new File({user: this.user});
         this.project = new Project();
         this.singleProject = new Project();
@@ -38,6 +41,7 @@ const App = Backbone.Model.extend({
             projects: this.projects
         });
         this.singleProjectsView = new SingleProjectsView({
+            repos: this.projects,
             projects: this.singleProject
         });
         this.singleFileView = new SingleFileView({
@@ -47,9 +51,6 @@ const App = Backbone.Model.extend({
         Backbone.history.start();
     },
     routeProjects: function () {
-        this.projects.fetch({
-            dataType: 'json',
-        })
         this.appView.childView = this.projectsView;
         this.appView.render();
     },
