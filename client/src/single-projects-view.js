@@ -30,5 +30,4 @@ const ProjectsView = Backbone.View.extend({
         }
     }
 });
-
 module.exports = ProjectsView;

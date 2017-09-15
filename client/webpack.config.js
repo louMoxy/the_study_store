@@ -22,7 +22,6 @@ module.exports = {
                 loader: "less-loader" // compiles Less to CSS
             }]
         },
-        
         {
             test: /\.(png|jpg|gif|svg)$/,
             use: ['file-loader?limit=8192&name=[name].[ext]']
@@ -33,6 +32,7 @@ module.exports = {
   devtool: 'inline-source-map',
   devServer: {
     contentBase: './src',
+    historyApiFallback: true,
      proxy: {
         '/api/v1/tree': {
             target: 'http://localhost:3000',

@@ -15,7 +15,7 @@ const App = Backbone.Model.extend({
     router: null,
     init: function() {
         this.user = 'moxy';
-        this.csrf = 'NlVPwUpnoEyt6CPOR29yWiNaytI6MTUwNTI5MDgwNzcyODAwMDAwMA==';
+        this.csrf = 'Pgu6uX4qlgAedDWW2gdPAL0IvoE6MTUwNTQ2MjQzMTgxNTgwMDEwMA==';
         const auth = btoa(`${this.user}:tester`);
         $.ajaxSetup({
             headers: {
@@ -48,7 +48,7 @@ const App = Backbone.Model.extend({
             model: this.file
         });
         this.router = new Router({ app: this });
-        Backbone.history.start();
+        Backbone.history.start({ pushState: true });
     },
     routeProjects: function () {
         this.appView.childView = this.projectsView;
@@ -73,7 +73,5 @@ const App = Backbone.Model.extend({
         this.appView.render();
     }
 });
-
-
 
 module.exports = App;
