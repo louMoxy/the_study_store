@@ -7,6 +7,7 @@ const ProjectsView = Backbone.View.extend({
     initialize: function(options) {
         this.projects = options.projects;
         this.repos = options.repos;
+        this.fileExtension= options.fileExtension;
         this.listenTo(this.projects, 'sync', this.projectsSync);
     },
     render: function() {
@@ -16,7 +17,7 @@ const ProjectsView = Backbone.View.extend({
     projectsSync: function() {
         if(this.projects.length !== 0) {
             this.projects.each(function(prj) {
-                if(prj.attributes.name.includes('.txt')){
+                if(prj.attributes.extension === this.fileExtension){
                     const project = new ProjectsItem({
                         model: prj
                     });

@@ -13,10 +13,12 @@ const ChangePasswordView = require('./change-password-view');
 
 const App = Backbone.Model.extend({
     router: null,
+    user: null,
     init: function() {
         this.user = 'moxy';
         this.csrf = 'Pgu6uX4qlgAedDWW2gdPAL0IvoE6MTUwNTQ2MjQzMTgxNTgwMDEwMA==';
         const auth = btoa(`${this.user}:tester`);
+        this.fileExtension= 'txt';
         $.ajaxSetup({
             headers: {
                 'Authorization': `Basic ${auth}`,
@@ -42,7 +44,8 @@ const App = Backbone.Model.extend({
         });
         this.singleProjectsView = new SingleProjectsView({
             repos: this.projects,
-            projects: this.singleProject
+            projects: this.singleProject,
+            fileExtension: this.fileExtension
         });
         this.singleFileView = new SingleFileView({
             model: this.file
@@ -60,7 +63,11 @@ const App = Backbone.Model.extend({
         this.appView.render();
     },
     routeSingleFile: function(dir, fileName) {
-        this.file.fetch({dir: dir, fileName: fileName});
+        this.file.fetch({
+            dir: dir, 
+            fileName: fileName,
+            fileExtension: this.fileExtension
+        });
         this.appView.childView = this.singleFileView;
         this.appView.render();
     },

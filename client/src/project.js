@@ -14,8 +14,9 @@ const Prj = Backbone.Model.extend({
         const username = response.TreeLink.split('/');
         const dir = response.TreeLink.split(`/${username[1]}/`).pop().split('/')[0];
         return {
+            extension: response.name.split('.')[1],
             dir: dir,
-            link: `/file/${dir}/${response.name}`,
+            link: `/file/${dir}/${response.name.split('.')[0]}${response.name.split('.')[1]}`,
             TreeLink: response.TreeLink,
             IsSubModule: response.IsSubModule, 
             directory: response.isDir,
