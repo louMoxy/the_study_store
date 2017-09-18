@@ -16,25 +16,26 @@ const App = Backbone.Model.extend({
     user: null,
     csrf: null,
     init: function() {
+        const self = this;
         this.user = 'moxy';
         this.fileExtension= 'txt';
         const auth = btoa(`${this.user}:tester`);
-        const request = new Request('http://localhost:8080/api/v1/tree/swagger', {
-            method: 'GET', 
-        });
-        fetch(request)
+        fetch(new Request('http://localhost:8080/api/v1/tree/swagger') )
             .then(response => {
                 return response.text();
             }).then (text => {
-                this.csrf =text.substring(text.lastIndexOf('value="')+7,text.lastIndexOf('"'));
+                return self.csrf =text.substring(text.lastIndexOf('value="')+7,text.lastIndexOf('"'));
             }).then( ()=> {
                 $.ajaxSetup({
                     headers: {
                         'Authorization': `Basic ${auth}`,
-                        "_csrf": this.csrf
+                        "_csrf": self.csrf
                     }
                 });
+                this.createViews();
             })
+    },
+    createViews: function() {
         this.createRepoView = new CreateRepoView({
             csrf: this.csrf
         });
