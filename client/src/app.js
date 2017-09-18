@@ -14,17 +14,27 @@ const ChangePasswordView = require('./change-password-view');
 const App = Backbone.Model.extend({
     router: null,
     user: null,
+    csrf: null,
     init: function() {
         this.user = 'moxy';
-        this.csrf = 'Pgu6uX4qlgAedDWW2gdPAL0IvoE6MTUwNTQ2MjQzMTgxNTgwMDEwMA==';
-        const auth = btoa(`${this.user}:tester`);
         this.fileExtension= 'txt';
-        $.ajaxSetup({
-            headers: {
-                'Authorization': `Basic ${auth}`,
-                "_csrf": this.csrf
-            }
+        const auth = btoa(`${this.user}:tester`);
+        const request = new Request('http://localhost:8080/api/v1/tree/swagger', {
+            method: 'GET', 
         });
+        fetch(request)
+            .then(response => {
+                return response.text();
+            }).then (text => {
+                this.csrf =text.substring(text.lastIndexOf('value="')+7,text.lastIndexOf('"'));
+            }).then( ()=> {
+                $.ajaxSetup({
+                    headers: {
+                        'Authorization': `Basic ${auth}`,
+                        "_csrf": this.csrf
+                    }
+                });
+            })
         this.createRepoView = new CreateRepoView({
             csrf: this.csrf
         });

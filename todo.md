@@ -9,7 +9,13 @@ User logged in:
 - [x] User can Change password - amend the proxy server
 - [x] Select file with certain extension from repo list
 - [x] Navigation
-- [ ] Redoing the sample repos
-- [ ] Upload the templates into the repo, and point the gitea to the templates files
-- [ ] Also upload the SQLlite
+- [x] Remove gitea from repo and add instructions to install from binary and how to set up config file and and templates
+- [x] Redoing the sample repos in the repo
+- [x] Also upload the SQLlite
+- [x] Amend a template to get the CSRF token
+- [ ] Be able to add files to repo
+- [ ] Handle the log-in rather than redirect
+- [ ] Test adding admin users and admin to organisation using gitea admin panel
+
+- Prototype 2
 - [ ] View history of file
