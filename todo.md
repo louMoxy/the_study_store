@@ -15,7 +15,7 @@ User logged in:
 - [x] Amend a template to get the CSRF token
 - [x] Be able to add files to repo
 - [x] Test adding admin users and admin to organisation using gitea admin panel
-- [ ] Be able to update files from upload
+- [x] Be able to update files from upload
 
 - Prototype 2
 - [ ] View history of file
