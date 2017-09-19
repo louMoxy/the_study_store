@@ -1,5 +1,4 @@
 # the_study_store
-
 To start gitea:
 Download gitea 1.2 from [https://dl.gitea.io/gitea/](https://dl.gitea.io/gitea/)
 Set env variable:
@@ -18,8 +17,3 @@ To start backbone:
 cd client
 npm install
 npm start
-
-gitea template files which have been modifies are:
-repo/bare --- when there is no files in the repo)
-repo/home --- repo list
-user/settings/password --- password change response
