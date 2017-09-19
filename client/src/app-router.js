@@ -33,7 +33,7 @@ const Router = Backbone.Router.extend({
         this.app.routeChangePass();
     },
     routeUploadFile: function(projectName) {
-        this.app.routeUploadFile();
+        this.app.routeUploadFile(projectName);
     }
 });
 

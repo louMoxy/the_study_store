@@ -4,6 +4,7 @@ const Dropzone = require('dropzone');
 
 const UploadFileview = Backbone.View.extend({
     className: 'upload-form',
+    projectName: null,
     template: require('./upload-file.ejs'),
     initialize: function(options){
         this.user = options.user;
@@ -25,8 +26,11 @@ const UploadFileview = Backbone.View.extend({
     },
     formSubmitted: function(e){
         e.preventDefault();
+        const commitmessage=  $('#commit_summary').val();
+        const summary=  $('#commit_message').val();
         const form = document.forms.namedItem('fileinfo');
         const formData = new FormData(form);
+        const branch = 'master';
         const getCSRF = new Request('http://localhost:8080/api/v1/tree/swagger', {
             method: 'GET', 
             credentials: 'same-origin',
@@ -41,7 +45,7 @@ const UploadFileview = Backbone.View.extend({
                 return csrf =text.substring(text.lastIndexOf('value="')+7,text.lastIndexOf('=="'));
             }).then( (csrf)=> {
                 this.settings.csrf = `${csrf}==`;
-                const requestUUID = new Request(`/api/v1/tree/${this.user}/Apples/upload-file`, {
+                const requestUUID = new Request(`/api/v1/tree/${this.user}/${this.projectName}/upload-file`, {
                         method: 'POST', 
                         mode: 'cors',
                         body: formData,
@@ -57,19 +61,16 @@ const UploadFileview = Backbone.View.extend({
                     .then(response => {
                         this.settings.uuid = response.uuid;
                         this.$el.html(this.template(this.settings));
-                        const requestPOST = new Request(`/api/v1/tree/${this.user}/Apples/_upload/master`, {
+                        const requestPOST = new Request(`/api/v1/tree/${this.user}/${this.projectName}/_upload/${branch}`, {
                             method: 'POST', 
                             mode: 'cors',
-                            body: `_csrf=${this.settings.csrf}&files=${this.settings.uuid}&commit_choice=direct&commit_message=commitmessage&commit_summary=summary`,
+                            body: `_csrf=${this.settings.csrf}&files=${this.settings.uuid}&commit_choice=direct&commit_message=${commitmessage}&commit_summary=${summary}`,
                             credentials: 'same-origin',
                             headers: new Headers({
                                 "Content-type": "application/x-www-form-urlencoded; charset=UTF-8" 
                             })
                         });
-                        fetch(requestPOST)
-                            .then(response => {
-                                Backbone.history.navigate(response.url);
-                            })
+                        fetch(requestPOST);
                     })
             });
     }

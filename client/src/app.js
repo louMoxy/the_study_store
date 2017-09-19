@@ -94,8 +94,9 @@ const App = Backbone.Model.extend({
         this.appView.childView = this.changePasswordView;
         this.appView.render();
     },
-    routeUploadFile: function() {
+    routeUploadFile: function(projectName) {
         this.appView.childView = this.uploadFileview;
+        this.uploadFileview.projectName = projectName;
         this.appView.render();
     }
 });

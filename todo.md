@@ -13,20 +13,10 @@ User logged in:
 - [x] Redoing the sample repos in the repo
 - [x] Also upload the SQLlite
 - [x] Amend a template to get the CSRF token
-- [ ] Be able to add files to repo
-- [ ] Handle the log-in rather than redirect
-- [ ] Test adding admin users and admin to organisation using gitea admin panel
-
-To upload a file the url is: :username/:reponame/_upload
-Post: header stuff
-In text format same as reset password request
-_csrf:ylP03hTiXKxp7YgbGPm1pkkuhzI6MTUwNTQ5MDEzNjczNDMwMDEwMA==
-tree_path:
-files:4ca25feb-9457-4952-bfb7-1719fd06649d //obvs refers to the commit number...
-commit_summary:
-commit_message:
-commit_choice:direct
-new_branch_name:
+- [x] Be able to add files to repo
+- [x] Test adding admin users and admin to organisation using gitea admin panel
+- [ ] Be able to update files from upload
 
 - Prototype 2
 - [ ] View history of file
+- [ ] Handle the log-in rather than redirect
