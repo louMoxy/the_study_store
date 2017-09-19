@@ -10,6 +10,7 @@ const File = require('./file');
 const SingleFileView = require('./single-file-view');
 const CreateRepoView = require('./create-repo-view');
 const ChangePasswordView = require('./change-password-view');
+const UploadFileview = require('./upload-file-view');
 
 const App = Backbone.Model.extend({
     router: null,
@@ -38,6 +39,9 @@ const App = Backbone.Model.extend({
     createViews: function() {
         this.createRepoView = new CreateRepoView({
             csrf: this.csrf
+        });
+        this.uploadFileview = new UploadFileview({
+            user: this.user
         });
         this.changePasswordView = new ChangePasswordView({
             csrf: this.csrf
@@ -88,6 +92,10 @@ const App = Backbone.Model.extend({
     },
     routeChangePass: function() {
         this.appView.childView = this.changePasswordView;
+        this.appView.render();
+    },
+    routeUploadFile: function() {
+        this.appView.childView = this.uploadFileview;
         this.appView.render();
     }
 });

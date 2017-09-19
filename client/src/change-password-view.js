@@ -9,7 +9,7 @@ const CreatePassView = Backbone.View.extend({
         this.csrf = options.csrf;
     },
     events: {
-        'submit' : "formSubmitted"
+        'submit' : 'formSubmitted'
     },
     render: function() {
         this.$el.html(this.template);
@@ -42,7 +42,7 @@ const CreatePassView = Backbone.View.extend({
             }).then (text => {
                 return csrf =text.substring(text.lastIndexOf('value="')+7,text.lastIndexOf('"'));
             }).then( (csrf)=> {
-                const request = new Request('/userSettings/password', {
+                const requestPOST = new Request('/userSettings/password', {
                     method: 'POST', 
                     mode: 'cors',
                     body: `_csrf=${csrf}&old_password=${old_password}&password=${password}&retype=${retype}`,
@@ -52,7 +52,7 @@ const CreatePassView = Backbone.View.extend({
                         "Content-type": "application/x-www-form-urlencoded; charset=UTF-8" 
                     })
                 });
-                fetch(request)
+                fetch(requestPOST)
                     .then(response => {
                         fetch(getRequest)
                             .then(resp => resp.text())

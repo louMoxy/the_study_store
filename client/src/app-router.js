@@ -7,6 +7,7 @@ const Router = Backbone.Router.extend({
     },
     routes: {
         '': 'routeDefault',
+        'projects/:projectName/upload': 'routeUploadFile',
         'projects/:projectName': 'routeProject',
         'projects': 'routeProjects',
         'file/:dir/:fileName': 'routeSingleFile',
@@ -30,6 +31,9 @@ const Router = Backbone.Router.extend({
     },
     routeChangePass: function() {
         this.app.routeChangePass();
+    },
+    routeUploadFile: function(projectName) {
+        this.app.routeUploadFile();
     }
 });
 

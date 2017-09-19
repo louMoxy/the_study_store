@@ -17,12 +17,12 @@ const ProjectsView = Backbone.View.extend({
     projectsSync: function() {
         if(this.projects.length !== 0) {
             this.projects.each(function(prj) {
-                if(prj.attributes.extension === this.fileExtension){
+                // if(prj.attributes.extension === this.fileExtension){
                     const project = new ProjectsItem({
                         model: prj
                     });
                     this.$el.append(project.render().el)
-                }
+                // }
             }.bind(this));
         } else {
             const repo = this.repos.findWhere({name: this.projects.projectName});
