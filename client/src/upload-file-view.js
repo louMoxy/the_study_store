@@ -66,7 +66,10 @@ const UploadFileview = Backbone.View.extend({
                                 "Content-type": "application/x-www-form-urlencoded; charset=UTF-8" 
                             })
                         });
-                        fetch(requestPOST);
+                        fetch(requestPOST)
+                            .then(response => {
+                                Backbone.history.navigate(response.url);
+                            })
                     })
             });
     }

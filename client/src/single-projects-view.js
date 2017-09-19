@@ -15,7 +15,9 @@ const ProjectsView = Backbone.View.extend({
         return this;
     },
     projectsSync: function() {
+        const repo = this.repos.findWhere({name: this.projects.projectName});
         if(this.projects.length !== 0) {
+            this.$el.append(`<h1>${repo.attributes.name}</h1>`);
             this.projects.each(function(prj) {
                 // if(prj.attributes.extension === this.fileExtension){
                     const project = new ProjectsItem({
@@ -24,8 +26,8 @@ const ProjectsView = Backbone.View.extend({
                     this.$el.append(project.render().el)
                 // }
             }.bind(this));
+            this.$el.after(`<a href="/projects/${repo.attributes.name}/upload"><button>Add new file</button></a>`)
         } else {
-            const repo = this.repos.findWhere({name: this.projects.projectName});
             this.$el.append(`<h3>${repo.attributes.name} repo is empty</h3><br>
                 <p>Repo clone: ${repo.attributes.clone_url}</p>`)
         }
