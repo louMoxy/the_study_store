@@ -16,7 +16,7 @@ const File = Backbone.Model.extend({
         options.dataType = 'text';
         this.fileExtension = options.fileExtension;
         this.fullFilename = this.fileName.replace(`${this.fileExtension}`, `.${this.fileExtension}`);
-        this.url = `/api/v1/repos/${this.user}/${this.dir}/raw/${this.branch}/${this.fullFilename}`;
+        this.url = `/api/v1/repos/${this.user}/${this.dir}/raw/${this.branch}/${this.fullFilename}.${this.fileExtension}`;
         return Backbone.Model.prototype.fetch.call(this, options);
     },
     parse: function(response) {

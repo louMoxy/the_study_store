@@ -18,10 +18,12 @@ const CreateRepoView = Backbone.View.extend({
         const name = String($('#name').val());
         const description = String($('#description').val());
         const private = $('#private').val();
+        const body =
+        `_csrf=${this.csrf}&name=${name}&description=${description}&private=${private}&auto_init=on`
         const request = new Request('/api/v1/user/repos', {
             method: 'POST', 
             mode: 'cors',
-            body: `_csrf=${this.csrf}&name=${name}&description=${description}&private=${private}`,
+            body: body,
             redirect: 'manual',
             credentials: 'same-origin',
             headers: new Headers({

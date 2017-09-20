@@ -61,8 +61,8 @@ const App = Backbone.Model.extend({
                         "_csrf": self.csrf
                     }
                 });
+                this.createViews();
             });
-            this.createViews();
     },
     createViews: function() {
         this.projects = new Projects();
@@ -113,11 +113,11 @@ const App = Backbone.Model.extend({
         this.appView.childView = this.singleProjectsView;
         this.appView.render();
     },
-    routeSingleFile: function(dir, fileName) {
+    routeSingleFile: function(dir, fileName, extension) {
         this.file.fetch({
             dir: dir, 
             fileName: fileName,
-            fileExtension: this.fileExtension,
+            fileExtension: extension,
             user: this.user
         });
         this.appView.childView = this.singleFileView;

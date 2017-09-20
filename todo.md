@@ -19,10 +19,7 @@ User logged in:
 - [x] Be able to update files from upload
 
 - Prototype 2
-- [ ] Handle the log-in rather than redirect
+- [x] Handle the log-in rather than redirect
+- [x] Initalize the repo with a readme
 - [ ] View history of file
-- [ ] Initalize the repo with a readme
-
-ERRORS
-
-- [ ] On first load there is no repos?
+- [ ] Admin of repo can add user to organisation
