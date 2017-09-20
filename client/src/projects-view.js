@@ -6,7 +6,7 @@ const ProjectsView = Backbone.View.extend({
     className: 'projectsList',
     initialize: function(options) {
         this.projects = options.projects;
-        this.listenTo(this.projects, 'sync', this.projectsSync)
+        this.listenTo(this.projects, 'sync', this.projectsSync);
     },
 
     render: function() {

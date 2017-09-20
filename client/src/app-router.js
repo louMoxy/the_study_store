@@ -12,7 +12,8 @@ const Router = Backbone.Router.extend({
         'projects': 'routeProjects',
         'file/:dir/:fileName': 'routeSingleFile',
         'create/repo': 'routeCreateRepo',
-        'settings/password-update': 'routeChangePass'
+        'settings/password-update': 'routeChangePass',
+        'login':'routeLogin'
     },
     routeDefault: function () {
         this.navigate('projects');
@@ -34,6 +35,9 @@ const Router = Backbone.Router.extend({
     },
     routeUploadFile: function(projectName) {
         this.app.routeUploadFile(projectName);
+    },
+    routeLogin: function(){
+        this.app.routeLogin();
     }
 });
 

@@ -11,16 +11,44 @@ const SingleFileView = require('./single-file-view');
 const CreateRepoView = require('./create-repo-view');
 const ChangePasswordView = require('./change-password-view');
 const UploadFileview = require('./upload-file-view');
+const LoginView = require('./login-view');
+const loginMessage = require('./not-logged-in.ejs');
 
 const App = Backbone.Model.extend({
     router: null,
     user: null,
     csrf: null,
+    auth: null,
     init: function() {
+        this.getUserName();
+    },
+    getUserName: function() {
         const self = this;
-        this.user = 'moxy';
+        const request = new Request('/api/v1/user/', {
+            mode: 'cors',
+            credentials: 'same-origin',
+        });
+        fetch(request)
+            .then(response =>{
+                return response.json();
+            })
+            .then(obj => {
+                this.user = obj.login;
+                this.createAuth();
+                $('.warning-info').html('')
+            })
+            .catch(function(error) {
+                if(!document.URL.includes('/login')) {
+                    $('.warning-info').html(loginMessage)
+                } else {
+                    self.createViews();
+                }
+                });
+    },
+    createAuth: function() {
+        const self = this;
         this.fileExtension= 'txt';
-        const auth = btoa(`${this.user}:tester`);
+        this.auth = btoa(`${this.user}:tester`);
         fetch(new Request('http://localhost:8080/api/v1/tree/swagger') )
             .then(response => {
                 return response.text();
@@ -29,14 +57,18 @@ const App = Backbone.Model.extend({
             }).then( ()=> {
                 $.ajaxSetup({
                     headers: {
-                        'Authorization': `Basic ${auth}`,
+                        'Authorization': `Basic ${this.auth}`,
                         "_csrf": self.csrf
                     }
                 });
-                this.createViews();
-            })
+            });
+            this.createViews();
     },
     createViews: function() {
+        this.projects = new Projects();
+        this.projects.fetch({
+            dataType: 'json'
+        })
         this.createRepoView = new CreateRepoView({
             csrf: this.csrf
         });
@@ -46,14 +78,9 @@ const App = Backbone.Model.extend({
         this.changePasswordView = new ChangePasswordView({
             csrf: this.csrf
         });
-        this.projects = new Projects();
-        this.projects.fetch({
-            dataType: 'json',
-        })
         this.file = new File({user: this.user});
         this.project = new Project();
         this.singleProject = new Project();
-        this.appView = new AppView({ el: document.querySelector('section.mainContent') });
         this.projectsView = new ProjectsView({
             projects: this.projects
         });
@@ -65,15 +92,24 @@ const App = Backbone.Model.extend({
         this.singleFileView = new SingleFileView({
             model: this.file
         });
+        this.loginView = new LoginView({
+            csrf: this.csrf,
+            app: this
+        });
+        this.appView = new AppView({ el: document.querySelector('section.mainContent') });
         this.router = new Router({ app: this });
-        Backbone.history.start({ pushState: true });
+        if(!Backbone.History.started){
+            Backbone.history.start({ pushState: true });
+        }
     },
     routeProjects: function () {
         this.appView.childView = this.projectsView;
         this.appView.render();
     },
     routeProject: function (projectName) {
-        this.singleProject.fetch({projectName: projectName, user: this.user});
+        this.singleProject.fetch({
+            projectName: projectName,
+            user: this.user});
         this.appView.childView = this.singleProjectsView;
         this.appView.render();
     },
@@ -81,7 +117,8 @@ const App = Backbone.Model.extend({
         this.file.fetch({
             dir: dir, 
             fileName: fileName,
-            fileExtension: this.fileExtension
+            fileExtension: this.fileExtension,
+            user: this.user
         });
         this.appView.childView = this.singleFileView;
         this.appView.render();
@@ -97,6 +134,10 @@ const App = Backbone.Model.extend({
     routeUploadFile: function(projectName) {
         this.appView.childView = this.uploadFileview;
         this.uploadFileview.projectName = projectName;
+        this.appView.render();
+    },
+    routeLogin: function() {
+        this.appView.childView =  this.loginView;
         this.appView.render();
     }
 });

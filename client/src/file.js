@@ -5,9 +5,10 @@ const File = Backbone.Model.extend({
     url: null,
     fileExtension: null,
     initialize: function(options) {
-        this.user = options.user;
+        this.app = options.app;
     },
     fetch: function(options){
+        this.user = options.user;
         options = options || {};
         this.dir = options.dir;
         this.fileName = options.fileName;

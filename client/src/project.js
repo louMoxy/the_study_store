@@ -42,7 +42,7 @@ const Project = Backbone.Collection.extend({
         options = options || {};
         options.dataType = 'html';
         return Backbone.Collection.prototype.fetch.call(this, options);
-    }
+    },
 });
 
 module.exports = Project;

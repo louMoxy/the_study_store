@@ -60,7 +60,7 @@ const Project = Backbone.Model.extend({
 
 const Projects = Backbone.Collection.extend({
     model: Project,
-    url: '/api/v1/user/repos/',
+    url: '/api/v1/user/repos/'
 });
 
 module.exports = Projects;

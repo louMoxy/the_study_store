@@ -1,6 +1,7 @@
 ##TODO
 
 User logged in:
+
 - [x] log in
 - [x] select repo from list
 - [x] get contents from the file
@@ -18,5 +19,10 @@ User logged in:
 - [x] Be able to update files from upload
 
 - Prototype 2
-- [ ] View history of file
 - [ ] Handle the log-in rather than redirect
+- [ ] View history of file
+- [ ] Initalize the repo with a readme
+
+ERRORS
+
+- [ ] On first load there is no repos?
