@@ -10,7 +10,13 @@ const FileView = Backbone.View.extend({
         return this;
     },
     modelSync: function() {
-        this.$el.append(this.template({text: this.model.attributes.text}));
+        const user = this.model.user;
+        const dir = this.model.dir;
+        const branch = this.model.branch;
+        const fileName = this.model.fileName;
+        const fileExtension = this.model.fileExtension;
+        const fileHistory = `/history/${user}/${dir}/${branch}/${fileName}/${fileExtension}`;
+        this.$el.append(this.template({text: this.model.attributes.text, fileHistory: fileHistory}));
         return this;
     }
 });

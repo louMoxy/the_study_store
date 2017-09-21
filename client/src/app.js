@@ -13,6 +13,8 @@ const ChangePasswordView = require('./change-password-view');
 const UploadFileview = require('./upload-file-view');
 const LoginView = require('./login-view');
 const loginMessage = require('./not-logged-in.ejs');
+const FileHistroyView = require('./file-history-view').FileHistroyView;
+const Commits = require('./file-history-view').Commits;
 
 const App = Backbone.Model.extend({
     router: null,
@@ -75,6 +77,12 @@ const App = Backbone.Model.extend({
         this.uploadFileview = new UploadFileview({
             user: this.user
         });
+        this.commits = new Commits({
+            user: this.user
+        });
+        this.fileHistroyView = new FileHistroyView({
+            collection: this.commits
+        });
         this.changePasswordView = new ChangePasswordView({
             csrf: this.csrf
         });
@@ -113,9 +121,10 @@ const App = Backbone.Model.extend({
         this.appView.childView = this.singleProjectsView;
         this.appView.render();
     },
-    routeSingleFile: function(dir, fileName, extension) {
+    routeSingleFile: function(dir, branch, fileName, extension) {
         this.file.fetch({
-            dir: dir, 
+            dir: dir,
+            branch: branch,
             fileName: fileName,
             fileExtension: extension,
             user: this.user
@@ -138,6 +147,13 @@ const App = Backbone.Model.extend({
     },
     routeLogin: function() {
         this.appView.childView =  this.loginView;
+        this.appView.render();
+    },
+    routeFileHistory: function(user, repo, branch,fileName, fileExtension) {
+        this.fileHistroyView.properties =  {
+            user: user, repo: repo, branch: branch,fileName: fileName, fileExtension: fileExtension
+        }
+        this.appView.childView =  this.fileHistroyView;
         this.appView.render();
     }
 });

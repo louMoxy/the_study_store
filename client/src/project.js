@@ -16,13 +16,14 @@ const Prj = Backbone.Model.extend({
         return {
             extension: response.name.split('.')[1],
             dir: dir,
-            link: `/file/${dir}/${response.name.split('.')[0]}/${response.name.split('.')[1]}`,
+            link: `/file/${dir}/${response.commit}/${response.name.split('.')[0]}/${response.name.split('.')[1]}`,
             TreeLink: response.TreeLink,
             IsSubModule: response.IsSubModule, 
             directory: response.isDir,
             item: response.item,
             jumpPathName: response.jumpPathName,
-            name: response.name
+            name: response.name,
+            commit: response.commit
         }
     }
 });
@@ -32,7 +33,11 @@ const Project = Backbone.Collection.extend({
     url: null,
     user: null,
     parse: function(response) {
-        const data = JSON.parse(response).data;
+        const dataJson = JSON.parse(response);
+        const data = dataJson.data;
+        data.forEach(prj => {
+            prj.commit = dataJson.latest;
+        })
         return data;
     },
     fetch:function(options){

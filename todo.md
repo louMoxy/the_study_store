@@ -21,5 +21,9 @@ User logged in:
 - Prototype 2
 - [x] Handle the log-in rather than redirect
 - [x] Initalize the repo with a readme
-- [ ] View history of file
+- [x] View history of file
 - [ ] Admin of repo can add user to organisation
+- [ ] Create repo and upload files on same page
+- [ ] Seperate out the upload files into 3 (network (dat), results(dp), demand(dat,csv))
+- [ ] When viewing the repo (model) need to filter by the three different type
+- [ ] Renaming the repos to highway-models
