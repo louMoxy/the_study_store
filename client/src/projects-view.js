@@ -10,7 +10,7 @@ const ProjectsView = Backbone.View.extend({
     },
 
     render: function() {
-        this.$el.html('');
+        this.$el.html('<h1>Highway Models</h1>');
         return this;
     },
     projectsSync: function() {

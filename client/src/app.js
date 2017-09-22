@@ -1,8 +1,8 @@
 const Backbone = require('backbone');
 const $ = require('jquery');
 const AppView = require('./app-view');
+const AppMenu = require('./app-menu');
 const Router = require('./app-router');
-const ProjectsView = require('./projects-view');
 const SingleProjectsView = require('./single-projects-view');
 const Projects = require('./projects');
 const Project = require('./project');
@@ -15,13 +15,18 @@ const LoginView = require('./login-view');
 const loginMessage = require('./not-logged-in.ejs');
 const FileHistroyView = require('./file-history-view').FileHistroyView;
 const Commits = require('./file-history-view').Commits;
+const AddUserOrg = require('./add-user-org-view');
+const OrganisationView  = require('./organisation-view');
+const DashboardView  = require('./dashboard-view');
 
 const App = Backbone.Model.extend({
     router: null,
     user: null,
     csrf: null,
     auth: null,
+    avatar: null,
     init: function() {
+        this.appMenu = new AppMenu({ el: document.querySelector('header') });
         this.getUserName();
     },
     getUserName: function() {
@@ -36,6 +41,7 @@ const App = Backbone.Model.extend({
             })
             .then(obj => {
                 this.user = obj.login;
+                this.avatar = obj.avatar_url;
                 this.createAuth();
                 $('.warning-info').html('')
             })
@@ -67,6 +73,10 @@ const App = Backbone.Model.extend({
             });
     },
     createViews: function() {
+        this.appMenu.loggedIn(this.user, this.avatar );
+        this.dashboardView = new DashboardView({
+            user: this.user
+        });
         this.projects = new Projects();
         this.projects.fetch({
             dataType: 'json'
@@ -86,11 +96,16 @@ const App = Backbone.Model.extend({
         this.changePasswordView = new ChangePasswordView({
             csrf: this.csrf
         });
+        this.addUserOrg = new AddUserOrg({
+            csrf: this.csrf,
+            app: this
+        });
         this.file = new File({user: this.user});
         this.project = new Project();
         this.singleProject = new Project();
-        this.projectsView = new ProjectsView({
-            projects: this.projects
+        this.orgHighwayModel = new Projects();
+        this.organisationView = new OrganisationView({
+            model: this.orgHighwayModel
         });
         this.singleProjectsView = new SingleProjectsView({
             repos: this.projects,
@@ -109,10 +124,6 @@ const App = Backbone.Model.extend({
         if(!Backbone.History.started){
             Backbone.history.start({ pushState: true });
         }
-    },
-    routeProjects: function () {
-        this.appView.childView = this.projectsView;
-        this.appView.render();
     },
     routeProject: function (projectName) {
         this.singleProject.fetch({
@@ -149,9 +160,27 @@ const App = Backbone.Model.extend({
         this.appView.childView =  this.loginView;
         this.appView.render();
     },
+    routeAddUserOrg: function(orgName) {
+        this.addUserOrg.orgName= orgName;
+        this.appView.childView =  this.addUserOrg;
+        this.appView.render();
+    },
+    routeOrganisation: function(orgName) {
+        this.organisationView.orgName = orgName;
+        this.appView.childView =  this.organisationView;
+        this.appView.render();
+    },
+    routeDashboard: function() {
+        this.appView.childView =  this.dashboardView;
+        this.appView.render();
+    },
     routeFileHistory: function(user, repo, branch,fileName, fileExtension) {
         this.fileHistroyView.properties =  {
-            user: user, repo: repo, branch: branch,fileName: fileName, fileExtension: fileExtension
+            user: user, 
+            repo: repo, 
+            branch: branch,
+            fileName: fileName, 
+            fileExtension: fileExtension
         }
         this.appView.childView =  this.fileHistroyView;
         this.appView.render();

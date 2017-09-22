@@ -7,20 +7,22 @@ const Router = Backbone.Router.extend({
     },
     routes: {
         '': 'routeDefault',
+        'dashboard' : 'routeDashboard',
         'projects/:projectName/upload': 'routeUploadFile',
         'projects/:projectName': 'routeProject',
-        'projects': 'routeProjects',
         'file/:dir/:branch/:fileName/:extension': 'routeSingleFile',
         'create/repo': 'routeCreateRepo',
         'settings/password-update': 'routeChangePass',
         'login':'routeLogin',
-        'history/:user/:repo/:branch/:fileName/:fileExtension':'routeFileHistory'
+        'history/:user/:repo/:branch/:fileName/:fileExtension':'routeFileHistory',
+        'org/:orgName/add':'routeAddUserOrg',
+        'org/:orgName':'routeOrganisation'
     },
     routeDefault: function () {
-        this.navigate('projects');
+        this.navigate('dashboard');
     },
-    routeProjects: function () {
-        this.app.routeProjects();
+    routeDashboard: function() {
+        this.app.routeDashboard();
     },
     routeProject: function(projectName) {
        this.app.routeProject(projectName);
@@ -42,6 +44,12 @@ const Router = Backbone.Router.extend({
     },
     routeFileHistory: function(user, repo, branch,fileName, fileExtension) {
         this.app.routeFileHistory(user, repo, branch,fileName, fileExtension);
+    },
+    routeAddUserOrg: function(orgName) {
+        this.app.routeAddUserOrg(orgName);
+    },
+    routeOrganisation: function(orgName) {
+        this.app.routeOrganisation(orgName);
     }
 });
 

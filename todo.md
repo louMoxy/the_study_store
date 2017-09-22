@@ -22,8 +22,15 @@ User logged in:
 - [x] Handle the log-in rather than redirect
 - [x] Initalize the repo with a readme
 - [x] View history of file
-- [ ] Admin of repo can add user to organisation
+- [x] Owner of repo can add user to organisation
+- [x] Organisation page
+- [x] User page (to list the organisation which user can access)
 - [ ] Create repo and upload files on same page
 - [ ] Seperate out the upload files into 3 (network (dat), results(dp), demand(dat,csv))
 - [ ] When viewing the repo (model) need to filter by the three different type
 - [ ] Renaming the repos to highway-models
+- [ ] 'Add new file' needs to have the branch as an option
+- [ ] Seperate files into better components
+
+
+Breakdown

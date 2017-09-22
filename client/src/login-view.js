@@ -38,7 +38,7 @@ const LoginView = Backbone.View.extend({
                     $('#responseText').html(reply)
                 } else {
                     this.app.createAuth();
-                    this.app.router.navigate('/projects', true);
+                    this.app.router.navigate('/dashboard', true);
                 }
             })
     },
