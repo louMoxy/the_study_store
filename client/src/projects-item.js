@@ -1,6 +1,7 @@
 const ProjectsItem = Backbone.View.extend({
     path: null,
     tagName: 'li',
+    className: "list-group-item",
     directory: null,
     template: require('./project.ejs'),
     initialize: function(options) {

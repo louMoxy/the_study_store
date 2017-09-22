@@ -85,7 +85,8 @@ const App = Backbone.Model.extend({
             csrf: this.csrf
         });
         this.uploadFileview = new UploadFileview({
-            user: this.user
+            user: this.user,
+            app: this
         });
         this.commits = new Commits({
             user: this.user

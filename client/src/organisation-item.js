@@ -1,6 +1,7 @@
 const OrganisationItem = Backbone.View.extend({
     path: null,
     tagName: 'li',
+    className: 'row p-4' ,
     directory: null,
     template: require('./organisation-item.ejs'),
     initialize: function(options) {

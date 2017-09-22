@@ -49,7 +49,6 @@ const AddUser = Backbone.View.extend({
                             let message = 'Organisation not found..';
                             $('#response').text(message);
                         } else {
-                            console.log('redirect');
                             this.app.router.navigate(`/org/${this.orgName}`, true);
                         }
                     })

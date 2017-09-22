@@ -26,7 +26,7 @@ const ProjectsView = Backbone.View.extend({
                     this.$el.append(project.render().el)
                 // }
             }.bind(this));
-            this.$el.after(`<a href="/projects/${repo.attributes.name}/upload"><button>Add new file</button></a>`)
+            this.$el.after(`<a href="/projects/${repo.attributes.name}/upload"><button class="btn btn-dark">Add new file</button></a>`)
         } else {
             this.$el.append(`<h3>${repo.attributes.name} repo is empty</h3><br>
                 <p>Repo clone: ${repo.attributes.clone_url}</p>`)

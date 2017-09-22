@@ -8,6 +8,7 @@ const UploadFileview = Backbone.View.extend({
     template: require('./upload-file.ejs'),
     initialize: function(options){
         this.user = options.user;
+        this.app = options.app;
         this.settings = {
             files:'master',
             commit_choice: 'direct',
@@ -70,7 +71,9 @@ const UploadFileview = Backbone.View.extend({
                                 "Content-type": "application/x-www-form-urlencoded; charset=UTF-8" 
                             })
                         });
-                        fetch(requestPOST);
+                        fetch(requestPOST).then(() => {
+                            this.app.router.navigate(`/projects/${this.projectName}`, true);
+                        });
                     })
             });
     }

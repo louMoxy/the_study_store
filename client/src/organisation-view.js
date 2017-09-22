@@ -3,6 +3,7 @@ const OrganisationHighwayModelView  = require('./organisation-highway-model-view
 const Users = require('./users');
 const UsersView = require('./users-view');
 const OrganisationView = Backbone.View.extend({
+    className: 'row justify-content-between',
     orgName: null,
     organisationHighwayModelView: null,
     usersView: null,

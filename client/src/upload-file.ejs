@@ -1,9 +1,17 @@
 <form name="fileinfo">
-    <input id="file" type="file" name="file">
-    <label for="commit_summary">Commit Summary: </label><input id="commit_summary" type="text" name="commit_summary" placeholder="Adding files ...">
-    <label for="commit_message">Commit Message: </label><input id="commit_message" type="text" name="commit_message" placeholder='More description'>
+    <div class="form-group">
+        <input class="form-control-file" id="file" type="file" name="file">
+    </div>
+    <div class="form-group">
+        <label for="commit_summary">Commit Summary: </label>
+        <input class="form-control" id="commit_summary" type="text" name="commit_summary" placeholder="Adding files ...">
+    </div>
+    <div class="form-group">
+        <label for="commit_message">Commit Message: </label>
+        <input class="form-control" id="commit_message" type="text" name="commit_message" placeholder='More description'>
+    </div>
     <input id="commit_choice" type="hidden" name="commit_choice" value='direct'>
     <input id="csrf" type="hidden" name="csrf" value=<%= csrf %>>
     <input id='files' type='hidden' name='files' value=<%= uuid %>>
-    <input type="submit">
+    <input class="btn btn-dark" type="submit">
 </form>

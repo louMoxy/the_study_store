@@ -5,6 +5,7 @@ const Projects = require('./projects');
 const Organisations = require('./organisations')
 
 const Dashboard = Backbone.View.extend({
+    className: 'd-flex justify-content-between',
     initialize: function(options) {
         this.user= options.user;
         this.projects = new Projects();
@@ -17,7 +18,6 @@ const Dashboard = Backbone.View.extend({
         })
     },
     render: function() {
-        this.$el.html('');
         this.projects.fetch({
             dataType: 'json'
         })

@@ -1,7 +1,6 @@
 const Backbone = require('backbone');
 
 const AppMenu = Backbone.View.extend({
-    tagname: 'header',
     template: require('./app-menu.ejs'), // external template
     loggedInTemplate: require('./logged-in-header.ejs'),
     user: null,

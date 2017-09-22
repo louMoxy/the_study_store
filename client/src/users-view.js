@@ -1,6 +1,7 @@
 const Backbone = require('backbone');
 const ProjectsItem = require('./projects-item');
 const UsersItem = require('./users-item');
+const $ = require('jquery');
 
 const UsersView = Backbone.View.extend({
     template: require('./userView.ejs'),
@@ -20,7 +21,7 @@ const UsersView = Backbone.View.extend({
             const user = new UsersItem({
                 model: prj
             });
-            this.$el.append(user.render().el)
+            $('#userList').append(user.render().el)
         }.bind(this));
     }
 });
