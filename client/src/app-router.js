@@ -11,7 +11,7 @@ const Router = Backbone.Router.extend({
         'projects/:projectName/upload': 'routeUploadFile',
         'projects/:projectName': 'routeProject',
         'file/:dir/:branch/:fileName/:extension': 'routeSingleFile',
-        'create/repo': 'routeCreateRepo',
+        'create/highway_model': 'routeCreateRepo',
         'settings/password-update': 'routeChangePass',
         'login':'routeLogin',
         'history/:user/:repo/:branch/:fileName/:fileExtension':'routeFileHistory',

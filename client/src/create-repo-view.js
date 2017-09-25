@@ -5,6 +5,7 @@ const CreateRepoView = Backbone.View.extend({
     template: require('./create-repo.ejs'),
     initialize: function(options) {
         this.csrf = options.csrf;
+        this.app = options.app;
     },
     events: {
         'submit' : "formSubmitted"
@@ -33,8 +34,10 @@ const CreateRepoView = Backbone.View.extend({
         fetch(request)
             .then(response => {
                 if(response.ok) {
-                    $('#responseText').text(response.statusText);
-                } 
+                    this.app.projects.fetch({
+                        dataType: 'json'
+                    }).then(() => this.app.router.navigate(`/projects/${name}`, true));
+                }
                 response.json().then(data => $('#responseText').text(data.message))
             });
     }

@@ -87,6 +87,7 @@ const App = Backbone.Model.extend({
             dataType: 'json'
         })
         this.createRepoView = new CreateRepoView({
+            app: this,
             csrf: this.csrf
         });
         this.uploadFileview = new UploadFileview({

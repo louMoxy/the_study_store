@@ -26,7 +26,7 @@ User logged in:
 - [x] Organisation page
 - [x] User page (to list the organisation which user can access)
 - [x] Handle user sign up
-- [ ] Create repo and upload files on same page
+- [x] Create repo and upload files on same page - creating repo does a redirect to the repo to upload the files
 - [ ] Seperate out the upload files into 3 (network (dat), results(dp), demand(dat,csv))
 - [ ] When viewing the repo (model) need to filter by the three different type
 - [ ] Add repo to org
