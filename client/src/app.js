@@ -18,6 +18,7 @@ const Commits = require('./file-history-view').Commits;
 const AddUserOrg = require('./add-user-org-view');
 const OrganisationView  = require('./organisation-view');
 const DashboardView  = require('./dashboard-view');
+const SignUpView = require('./user-sign-up');
 
 const App = Backbone.Model.extend({
     router: null,
@@ -46,7 +47,7 @@ const App = Backbone.Model.extend({
                 $('.warning-info').html('')
             })
             .catch(function(error) {
-                if(!document.URL.includes('/login')) {
+                if(!document.URL.includes('/login') && !document.URL.includes('/sign-up')) {
                     $('.warning-info').html(loginMessage)
                 } else {
                     self.createViews();
@@ -76,6 +77,10 @@ const App = Backbone.Model.extend({
         this.appMenu.loggedIn(this.user, this.avatar );
         this.dashboardView = new DashboardView({
             user: this.user
+        });
+        this.signUpView = new SignUpView({
+            csrf: this.csrf,
+            app: this
         });
         this.projects = new Projects();
         this.projects.fetch({
@@ -173,6 +178,10 @@ const App = Backbone.Model.extend({
     },
     routeDashboard: function() {
         this.appView.childView =  this.dashboardView;
+        this.appView.render();
+    },
+    routeSignUp: function() {
+        this.appView.childView = this.signUpView;
         this.appView.render();
     },
     routeFileHistory: function(user, repo, branch,fileName, fileExtension) {

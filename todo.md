@@ -25,12 +25,13 @@ User logged in:
 - [x] Owner of repo can add user to organisation
 - [x] Organisation page
 - [x] User page (to list the organisation which user can access)
-- [ ] Handle user sign up
+- [x] Handle user sign up
 - [ ] Create repo and upload files on same page
 - [ ] Seperate out the upload files into 3 (network (dat), results(dp), demand(dat,csv))
 - [ ] When viewing the repo (model) need to filter by the three different type
 - [ ] Add repo to org
 - [ ] Renaming the repos to highway-models in the code
 - [ ] 'Add new file' needs to have the branch as an option
-- [ ] Seperate files if the view also contains the model.... 
+- [ ] Seperate files if the view also contains the model....
 - [ ] Code renaming to make it easier to understand and adding comments
+- [ ] If no organisations of models then show button to create one

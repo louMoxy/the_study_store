@@ -16,7 +16,8 @@ const Router = Backbone.Router.extend({
         'login':'routeLogin',
         'history/:user/:repo/:branch/:fileName/:fileExtension':'routeFileHistory',
         'org/:orgName/add':'routeAddUserOrg',
-        'org/:orgName':'routeOrganisation'
+        'org/:orgName':'routeOrganisation',
+        'sign-up': 'routeSignUp'
     },
     routeDefault: function () {
         this.navigate('dashboard');
@@ -50,6 +51,9 @@ const Router = Backbone.Router.extend({
     },
     routeOrganisation: function(orgName) {
         this.app.routeOrganisation(orgName);
+    },
+    routeSignUp: function() {
+        this.app.routeSignUp();
     }
 });
 
