@@ -28,7 +28,7 @@ User logged in:
 - [x] Handle user sign up
 - [x] Create repo and upload files on same page - creating repo does a redirect to the repo to upload the files
 - [x] 'Add new file' needs to have the branch as an option
-- [ ] Add repo to org
+- [x] Add repo to org
 - [ ] Renaming the repos to highway-models in the code
 - [ ] Seperate files if the view also contains the model....
 - [ ] Code renaming to make it easier to understand and adding comments
@@ -39,3 +39,4 @@ User logged in:
 Things to think about:
 
 - Uploading files will there also be folders? if so will need to add tree_path into the file upload logic
+- Create a new repository in this organization. The authenticated user must be a owner of the specified organization.

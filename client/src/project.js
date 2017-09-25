@@ -44,10 +44,10 @@ const Project = Backbone.Collection.extend({
         return data;
     },
     fetch:function(options){
-        this.user = options.user;
+        this.owner = options.owner;
         this.projectName = options.projectName;
         this.branch = options.branch || 'master';
-        this.url = `/api/v1/tree/${this.user}/${options.projectName}/src/${this.branch}`
+        this.url = `/api/v1/tree/${this.owner}/${options.projectName}/src/${this.branch}`
         options = options || {};
         options.dataType = 'html';
         return Backbone.Collection.prototype.fetch.call(this, options);

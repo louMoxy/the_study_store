@@ -88,7 +88,7 @@ const App = Backbone.Model.extend({
         })
         this.createRepoView = new CreateRepoView({
             app: this,
-            csrf: this.csrf
+            csrf: this.csrf,
         });
         this.uploadFileview = new UploadFileview({
             user: this.user,
@@ -132,11 +132,11 @@ const App = Backbone.Model.extend({
             Backbone.history.start({ pushState: true });
         }
     },
-    routeProject: function (projectName, branch) {
+    routeProject: function (projectName, branch, owner) {
         this.singleProject.fetch({
             branch: branch,
             projectName: projectName,
-            user: this.user});
+            owner: owner});
         this.singleProjectsView.branch = branch;
         this.appView.childView = this.singleProjectsView;
         this.appView.render();
@@ -149,7 +149,6 @@ const App = Backbone.Model.extend({
             fileExtension: extension,
             user: this.user
         });
-        this.singleFileView.branch = branch;
         this.appView.childView = this.singleFileView;
         this.appView.render();
     },

@@ -9,7 +9,7 @@ const Router = Backbone.Router.extend({
         '': 'routeDefault',
         'dashboard' : 'routeDashboard',
         'projects/:projectName/:branch/upload': 'routeUploadFile',
-        'projects/:projectName/:branch': 'routeProject',
+        'project/:owner/:projectName/:branch': 'routeProject',
         'file/:dir/:branch/:fileName/:extension': 'routeSingleFile',
         'create/highway_model': 'routeCreateRepo',
         'settings/password-update': 'routeChangePass',
@@ -25,8 +25,8 @@ const Router = Backbone.Router.extend({
     routeDashboard: function() {
         this.app.routeDashboard();
     },
-    routeProject: function(projectName, routeProject) {
-       this.app.routeProject(projectName, routeProject);
+    routeProject: function(owner, projectName, branch) {
+       this.app.routeProject(projectName, branch, owner);
     },
     routeSingleFile: function(dir, branch, fileName, extension) {
         this.app.routeSingleFile(dir, branch, fileName, extension);

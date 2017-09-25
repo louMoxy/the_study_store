@@ -15,6 +15,19 @@
                 <option value="false" selected>False</option>
         </select>
     </div>
+    <% if (collection.models.length > 0) { %> 
+    <div class="form-group">
+        <label for="orgSelection">Add Highway model to organisation</label>
+            <select class="form-control" id="orgSelection">
+                <option value=''></option>
+                <% for (var i = 0; i < collection.models.length; i++ ) { %>
+                    <option value=<%= collection.models[i].attributes.username %>>
+                        <%= collection.models[i].attributes.username %></option>
+                <% }; %>
+            </select>
+        </div>
+    <% } %>
     <input type="submit" id="submit"  class="btn btn-dark">
 </form>
+
 <h3 id='responseText'></h3>

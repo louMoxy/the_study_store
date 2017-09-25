@@ -25,7 +25,7 @@ const ProjectsView = Backbone.View.extend({
             name: this.projects.projectName,
             branch: this.projects.branch
         }));
-        this.branches.url = `/api/v1/repos/${this.projects.user}/${this.projects.projectName}/branches`;
+        this.branches.url = `/api/v1/repos/${this.projects.owner}/${this.projects.projectName}/branches`;
         this.branches.fetch({
             dataType: 'json'
         })

@@ -2,7 +2,7 @@ const Backbone = require('backbone');
 const ProjectsView = require('./projects-view');
 const OrganisationView = require('./organisations-view');
 const Projects = require('./projects');
-const Organisations = require('./organisations')
+const Organisations = require('./organisations');
 
 const Dashboard = Backbone.View.extend({
     className: 'd-flex justify-content-between',

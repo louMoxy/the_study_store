@@ -27,7 +27,7 @@ const Project = Backbone.Model.extend({
     },
     idAttribute: 'id',
     parse: function(response)  {
-        const link = `/projects/${response.name}/${response.default_branch}`
+        const link = `/project/${response.owner.username}/${response.name}/${response.default_branch}`;
         return {
             link: link,
             path: 'projects/',
