@@ -13,10 +13,12 @@ const Prj = Backbone.Model.extend({
     parse: function(response){
         const username = response.TreeLink.split('/');
         const dir = response.TreeLink.split(`/${username[1]}/`).pop().split('/')[0];
+        const extension = response.name.split('.').pop();
+        const fileStringName = encodeURIComponent(response.name.slice(0, `-${extension.length +1}`));
         return {
-            extension: response.name.split('.')[1],
+            extension: extension,
             dir: dir,
-            link: `/file/${dir}/${response.commit}/${response.name.split('.')[0]}/${response.name.split('.')[1]}`,
+            link: `/file/${dir}/${response.commit}/${fileStringName}/${extension}`,
             TreeLink: response.TreeLink,
             IsSubModule: response.IsSubModule, 
             directory: response.isDir,

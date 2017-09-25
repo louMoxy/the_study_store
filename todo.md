@@ -28,10 +28,14 @@ User logged in:
 - [x] Handle user sign up
 - [x] Create repo and upload files on same page - creating repo does a redirect to the repo to upload the files
 - [x] 'Add new file' needs to have the branch as an option
-- [ ] Seperate out the upload files into 3 (network (dat), results(dp), demand(dat,csv))
-- [ ] When viewing the repo (model) need to filter by the three different type
 - [ ] Add repo to org
 - [ ] Renaming the repos to highway-models in the code
 - [ ] Seperate files if the view also contains the model....
 - [ ] Code renaming to make it easier to understand and adding comments
 - [ ] If no organisations of models then show button to create one
+- [ ] Seperate out the upload files into 3 (network (dat), results(dp), demand(dat,csv)) - Unsure how to do this best, unable to edit the file name being uploaded (works differently on different browsers), i could add it to the file data such as a commit, but then when displaying the model i would have to fetch all the files to get this data...
+- [ ] When viewing the repo (model) need to filter by the three different type
+
+Things to think about:
+
+- Uploading files will there also be folders? if so will need to add tree_path into the file upload logic

@@ -83,7 +83,7 @@ const UploadFileview = Backbone.View.extend({
                             body: this.body,
                             credentials: 'same-origin',
                             headers: new Headers({
-                                "Content-type": "application/x-www-form-urlencoded; charset=UTF-8" 
+                                "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
                             })
                         });
                         fetch(requestPOST).then(() => {

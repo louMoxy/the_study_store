@@ -35,13 +35,13 @@ const ProjectsView = Backbone.View.extend({
         this.branch= $('#branchSelection').val();
         this.projects.branch = this.branch;
         this.projects.fetch({
+            branch: this.branch,
             user: this.projects.user,
             projectName: this.projects.projectName
         });
         $("#upload-button").attr('href', `/projects/${this.projects.projectName}/${this.branch}/upload`);
     },
     branchesSync: function() {
-        console.log(this.branch)
         $('#col-right').html(this.templateDropdown({branches: this.branches.models, currentModel: this.branch}));
     },
     projectsSync: function() {
