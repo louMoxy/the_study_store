@@ -14,7 +14,7 @@ const Router = Backbone.Router.extend({
         'create/highway_model': 'routeCreateRepo',
         'settings/password-update': 'routeChangePass',
         'login':'routeLogin',
-        'history/:user/:repo/:branch/:fileName/:fileExtension':'routeFileHistory',
+        'history/:user/:highwayModel/:branch/:fileName/:fileExtension':'routeFileHistory',
         'org/:orgName/add':'routeAddUserOrg',
         'org/:orgName':'routeOrganisation',
         'sign-up': 'routeSignUp'
@@ -43,8 +43,8 @@ const Router = Backbone.Router.extend({
     routeLogin: function(){
         this.app.routeLogin();
     },
-    routeFileHistory: function(user, repo, branch,fileName, fileExtension) {
-        this.app.routeFileHistory(user, repo, branch,fileName, fileExtension);
+    routeFileHistory: function(user, highwayModel, branch,fileName, fileExtension) {
+        this.app.routeFileHistory(user, highwayModel, branch,fileName, fileExtension);
     },
     routeAddUserOrg: function(orgName) {
         this.app.routeAddUserOrg(orgName);

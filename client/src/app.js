@@ -115,7 +115,7 @@ const App = Backbone.Model.extend({
             model: this.orgHighwayModel
         });
         this.singleProjectsView = new SingleProjectsView({
-            repos: this.projects,
+            highwayModels: this.projects,
             projects: this.singleProject,
             fileExtension: this.fileExtension
         });
@@ -188,10 +188,10 @@ const App = Backbone.Model.extend({
         this.appView.childView = this.signUpView;
         this.appView.render();
     },
-    routeFileHistory: function(user, repo, branch,fileName, fileExtension) {
+    routeFileHistory: function(user, highwayModel, branch,fileName, fileExtension) {
         this.fileHistroyView.properties =  {
             user: user, 
-            repo: repo, 
+            highwayModel: highwayModel, 
             branch: branch,
             fileName: fileName, 
             fileExtension: fileExtension

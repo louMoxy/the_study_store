@@ -48,7 +48,7 @@ const FileHistroyView = Backbone.View.extend({
         this.$el.html('');
         this.collection.fetch({
             username: this.properties.user,
-            highwayModel: this.properties.repo,
+            highwayModel: this.properties.highwayModel,
             branch: this.properties.branch,
             fileName: this.properties.fileName,
             fileExtension: this.properties.fileExtension

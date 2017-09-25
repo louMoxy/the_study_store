@@ -11,7 +11,7 @@ const ProjectsView = Backbone.View.extend({
     branch: 'master',
     initialize: function(options) {
         this.projects = options.projects;
-        this.repos = options.repos;
+        this.highwayModels = options.highwayModels;
         this.fileExtension= options.fileExtension;
         this.branches = new Branches();
         this.listenTo(this.projects, 'sync', this.projectsSync);
@@ -45,8 +45,8 @@ const ProjectsView = Backbone.View.extend({
         $('#col-right').html(this.templateDropdown({branches: this.branches.models, currentModel: this.branch}));
     },
     projectsSync: function() {
-        const repo = this.repos.findWhere({name: this.projects.projectName});
-        $('#model-name').text(repo.attributes.name);
+        const highwayModel = this.highwayModels.findWhere({name: this.projects.projectName});
+        $('#model-name').text(highwayModel.attributes.name);
         if(this.projects.length !== 0) {
             $('#projectsList').empty();
             this.projects.each(function(prj) {
@@ -58,8 +58,8 @@ const ProjectsView = Backbone.View.extend({
                 // }
             }.bind(this));
         } else {
-            this.$el.append(`<h3>${repo.attributes.name} repo is empty</h3><br>
-                <p>Repo clone: ${repo.attributes.clone_url}</p>`)
+            this.$el.append(`<h3>${highwayModel.attributes.name} repo is empty</h3><br>
+                <p>Repo clone: ${highwayModel.attributes.clone_url}</p>`)
         }
     }
 });
