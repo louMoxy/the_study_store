@@ -132,10 +132,12 @@ const App = Backbone.Model.extend({
             Backbone.history.start({ pushState: true });
         }
     },
-    routeProject: function (projectName) {
+    routeProject: function (projectName, branch) {
         this.singleProject.fetch({
+            branch: branch,
             projectName: projectName,
             user: this.user});
+        this.singleProjectsView.branch = branch;
         this.appView.childView = this.singleProjectsView;
         this.appView.render();
     },
@@ -147,6 +149,7 @@ const App = Backbone.Model.extend({
             fileExtension: extension,
             user: this.user
         });
+        this.singleFileView.branch = branch;
         this.appView.childView = this.singleFileView;
         this.appView.render();
     },
@@ -158,9 +161,10 @@ const App = Backbone.Model.extend({
         this.appView.childView = this.changePasswordView;
         this.appView.render();
     },
-    routeUploadFile: function(projectName) {
+    routeUploadFile: function(projectName, branch) {
         this.appView.childView = this.uploadFileview;
         this.uploadFileview.projectName = projectName;
+        this.uploadFileview.branch = branch;
         this.appView.render();
     },
     routeLogin: function() {

@@ -32,6 +32,7 @@ const Project = Backbone.Collection.extend({
     model: Prj, 
     url: null,
     user: null,
+    branch: 'master',
     parse: function(response) {
         const dataJson = JSON.parse(response);
         const data = dataJson.data;
@@ -43,7 +44,8 @@ const Project = Backbone.Collection.extend({
     fetch:function(options){
         this.user = options.user;
         this.projectName = options.projectName;
-        this.url = `/api/v1/tree/${this.user}/${options.projectName}`
+        this.branch = options.branch || 'master';
+        this.url = `/api/v1/tree/${this.user}/${options.projectName}/src/${this.branch}`
         options = options || {};
         options.dataType = 'html';
         return Backbone.Collection.prototype.fetch.call(this, options);

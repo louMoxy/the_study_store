@@ -1,4 +1,4 @@
-<form name="fileinfo">
+<form name="fileinfo" id="fileinfo">
     <div class="form-group">
         <input class="form-control-file" id="file" type="file" name="file">
     </div>
@@ -10,8 +10,21 @@
         <label for="commit_message">Commit Message: </label>
         <input class="form-control" id="commit_message" type="text" name="commit_message" placeholder='More description'>
     </div>
-    <input id="commit_choice" type="hidden" name="commit_choice" value='direct'>
-    <input id="csrf" type="hidden" name="csrf" value=<%= csrf %>>
-    <input id='files' type='hidden' name='files' value=<%= uuid %>>
+    <div class="form-check">
+        <label class="form-check-label">
+          <input class="form-check-input" name="commit_choice" id="commit_choice1" type="radio" value="direct" checked>
+          Commit directly to <%= branch %>
+        </label>
+      </div>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input class="form-check-input" name="commit_choice" id="commit_choice2" type="radio" value="commit-to-new-branch">
+            Commit to new branch
+        </label>
+      </div>
+      <div class="form-group" style="display: none" id="new_branch_name_grp">
+        <label for="commit_message">Commit Message: </label>
+        <input class="form-control" type="text" id="new_branch_name" name="new_branch_name">
+      </div>
     <input class="btn btn-dark" type="submit">
 </form>
