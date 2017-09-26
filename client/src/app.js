@@ -160,8 +160,10 @@ const App = Backbone.Model.extend({
         this.appView.childView = this.changePasswordView;
         this.appView.render();
     },
-    routeUploadFile: function(projectName, branch) {
+    routeUploadFile: function(projectName, owner, branch) {
         this.appView.childView = this.uploadFileview;
+        console.log(owner)
+        this.uploadFileview.owner = owner;
         this.uploadFileview.projectName = projectName;
         this.uploadFileview.branch = branch;
         this.appView.render();

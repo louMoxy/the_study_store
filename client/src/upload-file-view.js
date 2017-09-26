@@ -60,7 +60,7 @@ const UploadFileview = Backbone.View.extend({
                 return csrf =text.substring(text.lastIndexOf('value="')+7,text.lastIndexOf('=="'));
             }).then( (csrf)=> {
                 this.settings.csrf = `${csrf}==`;
-                const requestUUID = new Request(`/api/v1/tree/${this.user}/${this.projectName}/upload-file`, {
+                const requestUUID = new Request(`/api/v1/tree/${this.owner}/${this.projectName}/upload-file`, {
                         method: 'POST', 
                         mode: 'cors',
                         body: formData,
@@ -77,7 +77,7 @@ const UploadFileview = Backbone.View.extend({
                         this.settings.uuid = response.uuid;
                         this.$el.html(this.template(this.settings));
                         this.body = `_csrf=${this.settings.csrf}&files=${this.settings.uuid}&commit_choice=${commit_choice}&commit_message=${commitmessage}&commit_summary=${summary}&new_branch_name=${new_branch_name}`;
-                        const requestPOST = new Request(`/api/v1/tree/${this.user}/${this.projectName}/_upload/${this.branch}`, {
+                        const requestPOST = new Request(`/api/v1/tree/${this.owner}/${this.projectName}/_upload/${this.branch}`, {
                             method: 'POST', 
                             mode: 'cors',
                             body: this.body,
@@ -87,7 +87,7 @@ const UploadFileview = Backbone.View.extend({
                             })
                         });
                         fetch(requestPOST).then(() => {
-                            this.app.router.navigate(`/projects/${this.projectName}/${this.branch}`, true);
+                            this.app.router.navigate(`/project/${this.owner}/${this.projectName}/${this.branch}`, true);
                         });
                     })
             });

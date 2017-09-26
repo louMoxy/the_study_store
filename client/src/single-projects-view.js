@@ -22,6 +22,7 @@ const ProjectsView = Backbone.View.extend({
     },
     render: function() {
         this.$el.html(this.template({
+            owner: this.projects.owner,
             name: this.projects.projectName,
             branch: this.projects.branch
         }));
@@ -35,11 +36,12 @@ const ProjectsView = Backbone.View.extend({
         this.branch= $('#branchSelection').val();
         this.projects.branch = this.branch;
         this.projects.fetch({
+            owner: this.projects.owner,
             branch: this.branch,
             user: this.projects.user,
             projectName: this.projects.projectName
         });
-        $("#upload-button").attr('href', `/projects/${this.projects.projectName}/${this.branch}/upload`);
+        $("#upload-button").attr('href', `/project/upload/${this.projects.projectName}/${this.projects.owner}/${this.branch}`);
     },
     branchesSync: function() {
         $('#col-right').html(this.templateDropdown({branches: this.branches.models, currentModel: this.branch}));
