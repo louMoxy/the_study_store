@@ -30,9 +30,13 @@ User logged in:
 - [x] 'Add new file' needs to have the branch as an option
 - [x] Add repo to org
 - [x] Renaming the repos to highway-models in the code
+- [x] Also model name can not have spaces - UE need to include
+- [ ] Uploading multiple files
+
+Blocked:
+
 - [ ] Seperate out the upload files into 3 (network (dat), results(dp), demand(dat,csv)) - Unsure how to do this best, unable to edit the file name being uploaded (works differently on different browsers), i could add it to the file data such as a commit, but then when displaying the model i would have to fetch all the files to get this data...
 - [ ] When viewing the repo (model) need to filter by the three different type
-- [ ] Also model name can not have spaces - UE need to include
 
 Things to think about:
 
