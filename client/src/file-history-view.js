@@ -57,7 +57,7 @@ const FileHistroyView = Backbone.View.extend({
     },
     collectionSync: function() {
         const fileLink = `/api/v1/repos/${this.collection.username}/${this.collection.highwayModel}/raw/${this.collection.branch}/${this.collection.fileName}.${this.collection.fileExtension}`;
-        this.$el.append(this.template({collection: this.collection, fileLink: fileLink}));
+        this.$el.append(this.template({collection: this.collection, fileLink: fileLink,user: this.properties.user}));
         return this;
     }
 });
