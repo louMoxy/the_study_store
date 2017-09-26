@@ -6,7 +6,11 @@
 	"commits": [
 		{{range $index, $r:= List .Commits}}
 		{{if and ($r) (gt $index 0)}},{{end}}{
-		"userFullName": "{{.User.FullName}}",
+			{{if .User.FullName}}
+				"userFullName": "{{.User.FullName}}",
+			{{else}}
+				"userFullName" : "{{.Author.Name}}",
+			{{end}}
 			"authorName": "{{.Author.Name}}",
 			"authorEmail": "{{.Author.Email}}",
 			"ID": "{{.ID}}",

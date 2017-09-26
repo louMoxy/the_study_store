@@ -141,13 +141,14 @@ const App = Backbone.Model.extend({
         this.appView.childView = this.singleProjectsView;
         this.appView.render();
     },
-    routeSingleFile: function(dir, branch, fileName, extension) {
+    routeSingleFile: function(owner, dir, branch, fileName, extension) {
         this.file.fetch({
             dir: dir,
             branch: branch,
             fileName: fileName,
             fileExtension: extension,
-            user: this.user
+            user: this.user,
+            owner: owner
         });
         this.appView.childView = this.singleFileView;
         this.appView.render();
@@ -162,7 +163,6 @@ const App = Backbone.Model.extend({
     },
     routeUploadFile: function(projectName, owner, branch) {
         this.appView.childView = this.uploadFileview;
-        console.log(owner)
         this.uploadFileview.owner = owner;
         this.uploadFileview.projectName = projectName;
         this.uploadFileview.branch = branch;

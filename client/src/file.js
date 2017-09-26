@@ -13,10 +13,11 @@ const File = Backbone.Model.extend({
         this.dir = options.dir;
         this.fileName = options.fileName;
         this.branch = options.branch;
+        this.owner = options.owner;
         options.dataType = 'text';
         this.fileExtension = options.fileExtension;
         this.fullFilename = this.fileName.replace(`${this.fileExtension}`, `.${this.fileExtension}`);
-        this.url = `/api/v1/repos/${this.user}/${this.dir}/raw/${this.branch}/${this.fullFilename}.${this.fileExtension}`;
+        this.url = `/api/v1/repos/${this.owner}/${this.dir}/raw/${this.branch}/${this.fullFilename}.${this.fileExtension}`;
         return Backbone.Model.prototype.fetch.call(this, options);
     },
     parse: function(response) {

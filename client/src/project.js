@@ -18,14 +18,15 @@ const Prj = Backbone.Model.extend({
         return {
             extension: extension,
             dir: dir,
-            link: `/file/${dir}/${response.commit}/${fileStringName}/${extension}`,
+            link: `/file/${username[1]}/${dir}/${response.commit}/${fileStringName}/${extension}`,
             TreeLink: response.TreeLink,
             IsSubModule: response.IsSubModule, 
             directory: response.isDir,
             item: response.item,
             jumpPathName: response.jumpPathName,
             name: response.name,
-            commit: response.commit
+            commit: response.commit,
+            owner: username[1]
         }
     }
 });
