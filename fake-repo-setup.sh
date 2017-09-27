@@ -3,8 +3,8 @@
 ROOT=${DATAROOT:?Error dataroot not defined}
 
 function exeter(){
-    mkdir Exeter
-    pushd Exeter || exit
+    mkdir -p gitea/repo-data/dcc/exeter.git
+    pushd gitea/repo-data/dcc/exeter.git || exit
     git init
     echo '*.L??' > .gitignore
     echo '*.zip' >> .gitignore
@@ -27,8 +27,8 @@ echo "done"
 }
 
 function clyst_honiton(){
-    mkdir ClystHoniton
-    pushd ClystHoniton || exit
+    mkdir -p gitea/repo-data/dcc/clysthoniton.git
+    pushd gitea/repo-data/dcc/clysthoniton.git || exit
     git init
     echo '*.L??' > .gitignore
     echo '*.zip' >> .gitignore
@@ -47,8 +47,8 @@ function clyst_honiton(){
 }
 
 function exmouth() {
-    mkdir Exmouth
-    pushd Exmouth || exit
+    mkdir -p gitea/repo-data/dcc/exmouth.git
+    pushd gitea/repo-data/dcc/exmouth.git || exit
     git init
     echo '*.L??' > .gitignore
     echo '*.zip' >> .gitignore
@@ -78,8 +78,90 @@ function exmouth() {
     popd
 }
 
+function anaheim(){
+    mkdir -p gitea/repo-data/csc/anaheim.git
+    pushd gitea/repo-data/csc/anaheim.git || exit
+    git init
+    echo '*.L??' > .gitignore
+    echo '*.zip' >> .gitignore
+    echo 'Thumbs.db' >> .gitignore
+    echo "Anaheim Network" > README.md
+    git add .
+    git commit -m "Modelsetup"
+    cp "$ROOT/SourceData/Networks/Anaheim"/*.* .
+    git add -- *.DAT *.dat
+    git commit -m "Initial model upload"
+    git add -- *.sh? *.dbf
+    git commit -m "Include shapefiles"
+    git add .
+    git commit -m "First run"
+    popd
+}
+
+function barcelona(){
+    mkdir -p gitea/repo-data/csc/barcelona.git
+    pushd gitea/repo-data/csc/barcelona.git || exit
+    git init
+    echo '*.L??' > .gitignore
+    echo '*.zip' >> .gitignore
+    echo 'Thumbs.db' >> .gitignore
+    echo "Barcelona Network" > README.md
+    git add .
+    git commit -m "Modelsetup"
+    cp "$ROOT/SourceData/Networks/Barcelona"/*.* .
+    git add -- *.DAT *.dat
+    git commit -m "Initial model upload"
+    git add -- *.sh? *.dbf
+    git commit -m "Include shapefiles"
+    git add .
+    git commit -m "First run"
+    popd
+}
+
+function chicago(){
+    mkdir -p gitea/repo-data/csc/chicago.git
+    pushd gitea/repo-data/csc/chicago.git || exit
+    git init
+    echo '*.L??' > .gitignore
+    echo '*.zip' >> .gitignore
+    echo 'Thumbs.db' >> .gitignore
+    echo "Chicago Network" > README.md
+    git add .
+    git commit -m "Modelsetup"
+    cp "$ROOT/SourceData/Networks/Chicago"/*.* .
+    git add -- *.DAT *.dat
+    git commit -m "Initial model upload"
+    git add -- *.sh? *.dbf
+    git commit -m "Include shapefiles"
+    git add .
+    git commit -m "First run"
+    popd
+}
+
+function SiouxFalls(){
+    mkdir -p gitea/repo-data/csc/siouxFalls.git
+    pushd gitea/repo-data/csc/siouxFalls.git || exit
+    git init
+    echo '*.L??' > .gitignore
+    echo '*.zip' >> .gitignore
+    echo 'Thumbs.db' >> .gitignore
+    echo "SiouxFalls Network" > README.md
+    git add .
+    git commit -m "Modelsetup"
+    cp "$ROOT/SourceData/Networks/SiouxFalls"/*.* .
+    git add -- *.DAT *.dat
+    git commit -m "Initial model upload"
+    git add -- *.sh? *.dbf
+    git commit -m "Include shapefiles"
+    git add .
+    git commit -m "First run"
+    popd
+}
+
 exeter
 clyst_honiton
 exmouth
-
-
+chicago
+barcelona
+anaheim
+SiouxFalls
