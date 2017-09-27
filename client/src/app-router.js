@@ -7,24 +7,29 @@ const Router = Backbone.Router.extend({
     },
     routes: {
         '': 'routeDefault',
-        'projects/:projectName/upload': 'routeUploadFile',
-        'projects/:projectName': 'routeProject',
-        'projects': 'routeProjects',
-        'file/:dir/:fileName': 'routeSingleFile',
-        'create/repo': 'routeCreateRepo',
-        'settings/password-update': 'routeChangePass'
+        'dashboard' : 'routeDashboard',
+        'project/upload/:projectName/:owner/:branch': 'routeUploadFile',
+        'project/:owner/:projectName/:branch': 'routeProject',
+        'file/:owner/:dir/:branch/:fileName/:extension': 'routeSingleFile',
+        'create/highway_model': 'routeCreateRepo',
+        'settings/password-update': 'routeChangePass',
+        'login':'routeLogin',
+        'history/:user/:highwayModel/:branch/:fileName/:fileExtension':'routeFileHistory',
+        'org/:orgName/add':'routeAddUserOrg',
+        'org/:orgName':'routeOrganisation',
+        'sign-up': 'routeSignUp'
     },
     routeDefault: function () {
-        this.navigate('projects');
+        this.navigate('dashboard');
     },
-    routeProjects: function () {
-        this.app.routeProjects();
+    routeDashboard: function() {
+        this.app.routeDashboard();
     },
-    routeProject: function(projectName) {
-       this.app.routeProject(projectName);
+    routeProject: function(owner, projectName, branch) {
+       this.app.routeProject(projectName, branch, owner);
     },
-    routeSingleFile: function(dir, fileName) {
-        this.app.routeSingleFile(dir, fileName);
+    routeSingleFile: function(owner, dir, branch, fileName, extension) {
+        this.app.routeSingleFile(owner, dir, branch, fileName, extension);
     }, 
     routeCreateRepo: function() {
         this.app.routeCreateRepo();
@@ -32,8 +37,23 @@ const Router = Backbone.Router.extend({
     routeChangePass: function() {
         this.app.routeChangePass();
     },
-    routeUploadFile: function(projectName) {
-        this.app.routeUploadFile(projectName);
+    routeUploadFile: function(projectName, owner, branch) {
+        this.app.routeUploadFile(projectName, owner, branch);
+    },
+    routeLogin: function(){
+        this.app.routeLogin();
+    },
+    routeFileHistory: function(user, highwayModel, branch,fileName, fileExtension) {
+        this.app.routeFileHistory(user, highwayModel, branch,fileName, fileExtension);
+    },
+    routeAddUserOrg: function(orgName) {
+        this.app.routeAddUserOrg(orgName);
+    },
+    routeOrganisation: function(orgName) {
+        this.app.routeOrganisation(orgName);
+    },
+    routeSignUp: function() {
+        this.app.routeSignUp();
     }
 });
 

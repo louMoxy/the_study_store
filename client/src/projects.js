@@ -27,7 +27,7 @@ const Project = Backbone.Model.extend({
     },
     idAttribute: 'id',
     parse: function(response)  {
-        const link = `/projects/${response.name}`
+        const link = `/project/${response.owner.username}/${response.name}/${response.default_branch}`;
         return {
             link: link,
             path: 'projects/',
@@ -60,7 +60,7 @@ const Project = Backbone.Model.extend({
 
 const Projects = Backbone.Collection.extend({
     model: Project,
-    url: '/api/v1/user/repos/',
+    url: '/api/v1/user/repos/'
 });
 
 module.exports = Projects;

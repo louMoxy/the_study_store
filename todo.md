@@ -1,6 +1,7 @@
 ##TODO
 
 User logged in:
+
 - [x] log in
 - [x] select repo from list
 - [x] get contents from the file
@@ -18,5 +19,26 @@ User logged in:
 - [x] Be able to update files from upload
 
 - Prototype 2
-- [ ] View history of file
-- [ ] Handle the log-in rather than redirect
+- [x] Handle the log-in rather than redirect
+- [x] Initalize the repo with a readme
+- [x] View history of file
+- [x] Owner of repo can add user to organisation
+- [x] Organisation page
+- [x] User page (to list the organisation which user can access)
+- [x] Handle user sign up
+- [x] Create repo and upload files on same page - creating repo does a redirect to the repo to upload the files
+- [x] 'Add new file' needs to have the branch as an option
+- [x] Add repo to org
+- [x] Renaming the repos to highway-models in the code
+- [x] Also model name can not have spaces - UE need to include
+- [ ] Uploading multiple files
+
+Blocked:
+
+- [ ] Seperate out the upload files into 3 (network (dat), results(dp), demand(dat,csv)) - Unsure how to do this best, unable to edit the file name being uploaded (works differently on different browsers), i could add it to the file data such as a commit, but then when displaying the model i would have to fetch all the files to get this data...
+- [ ] When viewing the repo (model) need to filter by the three different type
+
+Things to think about:
+
+- Uploading files will there also be folders? if so will need to add tree_path into the file upload logic
+- Create a new repository in this organization. The authenticated user must be a owner of the specified organization.

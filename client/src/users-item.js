@@ -1,9 +1,10 @@
-const ProjectsItem = Backbone.View.extend({
+
+const UsersItem = Backbone.View.extend({
     path: null,
     tagName: 'li',
-    className: "list-group-item",
+    className: 'list-group-item',
     directory: null,
-    template: require('./project.ejs'),
+    template: require('./user.ejs'),
     initialize: function(options) {
         this.model = options.model;
     },
@@ -13,4 +14,4 @@ const ProjectsItem = Backbone.View.extend({
     }
 });
 
-module.exports = ProjectsItem;
+module.exports = UsersItem;

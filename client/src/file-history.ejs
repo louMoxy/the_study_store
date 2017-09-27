@@ -1,0 +1,21 @@
+<table class="table">
+    <tr>
+        <th>Author </th>
+        <th>Commit</th> 
+        <th>Message</th>
+        <th>Date</th>
+    </tr>
+    <% for (var i = 0; i < collection.models.length; i++ ) { %>
+        <tr>
+            <td><%= collection.models[i].attributes.authorName %></td>
+            <td>
+                <a href="/file/<%=user%>/<%=collection.models[i].attributes.highwayModel%>/<%=collection.models[i].id%>/<%=collection.models[i].attributes.fileName%>/<%=collection.models[i].attributes.fileExtension%>">
+                    <%= collection.models[i].id %>
+                </a>
+            </td>
+            <td><%= collection.models[i].attributes.summary %></td>
+            <td><%= collection.models[i].attributes.authorWhen %></td>
+          </tr>
+        <% }; %>
+       
+</table>

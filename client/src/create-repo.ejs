@@ -1,10 +1,34 @@
+<h3>Create Highway Model</h3>
 <form>
-    <label for="name">Name: </label><input id="name" type="text" name="name" required>
-    <label for="description">Description: </label><input id="description" type="text" name="description">
-    <label for="private">Private: </label><select id="private" name="private">
-            <option value="true">True</option>
-            <option value="false" selected>False</option>
-    </select>
-    <input type="submit" id="submit">
+    <div class="form-group">
+        <label for="name">Name: </label>
+        <input class="form-control"  id="name" type="text" name="name" required>
+        <small>No spaces allowed</small>
+    </div>
+    <div class="form-group">
+        <label for="description">Description: </label>
+        <input class="form-control"  id="description" type="text" name="description">
+    </div>
+    <div class="form-group">
+        <label for="private">Private: </label>
+        <select class="form-control"  id="private" name="private">
+                <option value="true">True</option>
+                <option value="false" selected>False</option>
+        </select>
+    </div>
+    <% if (collection.models.length > 0) { %> 
+    <div class="form-group">
+        <label for="orgSelection">Add Highway model to organisation</label>
+            <select class="form-control" id="orgSelection">
+                <option value=''></option>
+                <% for (var i = 0; i < collection.models.length; i++ ) { %>
+                    <option value=<%= collection.models[i].attributes.username %>>
+                        <%= collection.models[i].attributes.username %></option>
+                <% }; %>
+            </select>
+        </div>
+    <% } %>
+    <input type="submit" id="submit"  class="btn btn-dark">
 </form>
+
 <h3 id='responseText'></h3>

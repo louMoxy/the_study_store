@@ -54,7 +54,14 @@ module.exports = {
             pathRewrite: {
                 '^/userSettings': '/user/settings'
             }
-        }
+        },
+        '/userLogin': {
+            target: 'http://localhost:3000',
+            secure: false,
+            pathRewrite: {
+                '^/userLogin': '/user/login'
+            }
+        },
     }
   }
 };

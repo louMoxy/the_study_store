@@ -1,4 +1,3 @@
-require('./less/style.less');
 const App = require('./app');
 window.app = new App();
 
