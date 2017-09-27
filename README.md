@@ -11,6 +11,8 @@ To start gitea:
     database type: SQLite3
     path: ../the_study_store/gitea/data/gitea.db
 
+Create the test repos by bash fake-repo-setup.sh
+
 You can either register as a new user, or use my login (admin privilege's)
 Username: moxy
 Password: testing
